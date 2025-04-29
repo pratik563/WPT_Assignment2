@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highlight Words on Hover</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        a {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        p {
+            font-size: 26px;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <a id="hoverLink">[On mouse over here bold words of the following paragraph will be highlighted]</a>
+    <p id="paragraph">We have just started this section for the users (beginner to intermediate) who want to work with various JavaScript problems and write scripts online to test their JavaScript skill.</p>
+
+    <script>
+        // Get the link and paragraph elements
+        const hoverLink = document.getElementById("hoverLink");
+        const paragraph = document.getElementById("paragraph");
+
+        // Store the original paragraph text to restore it later
+        const originalText = paragraph.innerHTML;
+
+        // Words to highlight in bold
+        const wordsToHighlight = ["have", "section", "to", "intermediate", "JavaScript", "their"];
+
+        // Function to highlight the specified words
+        function highlightWords() {
+            let text = originalText;
+            // Loop through each word to highlight
+            wordsToHighlight.forEach(word => {
+                // Create a case-sensitive regular expression for the word with word boundaries
+                const regex = new RegExp(`\\b${word}\\b`, "g");
+                // Wrap the word in <strong> tags to make it bold
+                text = text.replace(regex, `<strong>${word}</strong>`);
+            });
+            // Update the paragraph with the highlighted words
+            paragraph.innerHTML = text;
+        }
+
+        // Function to revert the paragraph to its original state
+        function removeHighlight() {
+            paragraph.innerHTML = originalText;
+        }
+
+        // Add event listeners for mouseover and mouseout
+        hoverLink.addEventListener("mouseover", highlightWords);
+        hoverLink.addEventListener("mouseout", removeHighlight);
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Items from Dropdown</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        select, button {
+            margin: 10px;
+            padding: 8px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e60000;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>Remove Items from Dropdown List</h2>
+    <label for="dropdown">Select an item:</label>
+    <select id="dropdown">
+        <option value="chiku">Lionel</option>
+        <option value="ananas">Cristiano</option>
+        <option value="keli">Maradona</option>
+        <option value="anaconda">Pele</option>
+        <option value="apple">Beckenbauer</option>
+        <option value="banana">Cruyff</option>
+        <option value="orange">Zidane</option>
+        <option value="grape">Ronaldo </option>
+        <option value="mango">Platini</option>
+    </select>
+
+    <div>
+        <button onclick="removeTopItem()">Remove Top Item</button>
+    </div>
+    <div>
+        <button onclick="removeAll()">Remove All Items</button>
+    </div>
+
+    <div id="output"></div>
+
+    <script>
+        // Function to remove the top item (first item) from the dropdown
+        function removeTopItem() {
+            const dropdown = document.getElementById("dropdown");
+            const output = document.getElementById("output");
+
+            // Check if the dropdown has any items
+            if (dropdown.options.length === 0) {
+                output.innerHTML = "<p style='color: red;'>Dropdown is empty!</p>";
+                return;
+            }
+
+            // Get the text of the top item (index 0)
+            const removedItem = dropdown.options[0].text;
+
+            // Remove the top item (index 0)
+            dropdown.remove(0);
+
+            // Display success message
+            output.innerHTML = `<p>Removed: ${removedItem}</p>`;
+        }
+
+        // Function to remove all items
+        function removeAll() {
+            const dropdown = document.getElementById("dropdown");
+            const output = document.getElementById("output");
+
+            // Check if the dropdown is already empty
+            if (dropdown.options.length === 0) {
+                output.innerHTML = "<p style='color: red;'>Dropdown is already empty!</p>";
+                return;
+            }
+
+            // Remove all options
+            dropdown.options.length = 0;
+
+            // Display success message
+            output.innerHTML = "<p>All items removed from the dropdown!</p>";
+        }
+    </script>
+</body>
+</html>

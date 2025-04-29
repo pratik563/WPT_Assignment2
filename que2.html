@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola Papi</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+            width: 800px;
+            margin: auto;
+        }
+
+        button{
+            padding: 13px 20px;
+            border-radius: 5px;
+            font-size: 20px;
+            background-color: antiquewhite;
+            cursor: pointer;
+        }
+
+        form{
+            font-size: 24px;
+        }
+
+        input{
+            font-size: 24px;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <form id="myForm">
+        <label for="fname">First Name: </label>
+        <input type="text" id="fname" name="fname"> <br> <br>
+
+        <label for="lname">Last Name: </label>
+        <input type="text" id="lname" name="lname"> <br> <br>
+
+        <label for="number">Contact Num: </label>
+        <input type="text" id="number" name="number"> <br> <br>
+
+        <label for="mailid">Email Id: </label>
+        <input type="email" id="mailid" name="mailid"> <br> <br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="output"></div>
+</body>
+<script>
+    // Get the form and output div
+    const form = document.getElementById("myForm");
+    const output = document.getElementById("output");
+
+    // Add event listener for form submission
+    form.addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get form input values
+        const firstName = document.getElementById("fname").value;
+        const lastName = document.getElementById("lname").value;
+        const contactNumber = document.getElementById("number").value;
+        const email = document.getElementById("mailid").value;
+
+        // Display the values in the output div
+        output.innerHTML = `
+            <h3>Submitted Details:</h3>
+            <p><strong>First Name:</strong> ${firstName}</p>
+            <p><strong>Last Name:</strong> ${lastName}</p>
+            <p><strong>Contact Number:</strong> ${contactNumber}</p>
+            <p><strong>Email ID:</strong> ${email}</p>
+        `;
+    });
+</script>
+</html>
